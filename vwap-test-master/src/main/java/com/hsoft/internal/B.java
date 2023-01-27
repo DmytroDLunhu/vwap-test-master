@@ -2,8 +2,6 @@ package com.hsoft.internal;
 
 import com.hsoft.api.MarketDataListener;
 import com.hsoft.api.PricingDataListener;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -25,6 +23,7 @@ public class B implements C {
 
     static {
         log.info("Java: " + System.getProperty("java.runtime.version"));
+        // log was null in two tests :/
     }
 
     private final Collection<MarketDataListener> l1 = new CopyOnWriteArrayList<>();

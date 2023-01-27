@@ -8,8 +8,9 @@ public interface MarketDataListener {
      * @param productId Identifier of the product on which the transaction occurred
      * @param quantity  Quantity of the transaction
      * @param price     Price of the transaction
+     * @return
      */
-    void transactionOccurred(String productId,
-                             long quantity,
-                             double price);
+    Object transactionOccurred(String productId,
+                               long quantity,
+                               double price);
 }

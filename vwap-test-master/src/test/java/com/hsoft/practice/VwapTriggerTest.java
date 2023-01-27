@@ -7,8 +7,12 @@ import org.junit.jupiter.api.Test;
  */
 public class VwapTriggerTest {
 
-  @Test
-  void shouldXxxx() {
-
-  }
+    @Test
+    void compare() {
+        VwapTrigger vwapTrigger = new VwapTrigger();
+        {
+            vwapTrigger.transactionOccurred(String.valueOf(11), 11, 11);
+            vwapTrigger.fairValueChanged(String.valueOf(22), 22);
+        }
+    }
 }

@@ -10,14 +10,25 @@ import com.hsoft.api.VwapTriggerListener;
  */
 public class VwapTrigger implements PricingDataListener, MarketDataListener {
 
-    private final VwapTriggerListener vwapTriggerListener;
+    public static VwapTriggerListener vwapTriggerListener = null;
 
     public VwapTrigger(VwapTriggerListener vwapTriggerListener) {
         this.vwapTriggerListener = vwapTriggerListener;
     }
 
+    public VwapTrigger() {
+
+    }
+
     @Override
-    public void transactionOccurred(String productId, long quantity, double price) {
+    public VwapTrigger transactionOccurred(String productId, long quantity, double price) {
+        if (this.vwapTriggerListener == vwapTriggerListener) vwapTriggerListener.notify();
+        else if (this.vwapTriggerListener == null)
+            return new VwapTrigger(vwapTriggerListener);
+        else {
+            throw new RuntimeException(vwapTriggerListener + " need to check");
+        }
+        return null;
         // This method will be called when a new transaction is received
         // You can then perform your check
         // And, if matching the requirement, notify the event via 'this.vwapTriggerListener.vwapTriggered(xxx);'
@@ -25,8 +36,20 @@ public class VwapTrigger implements PricingDataListener, MarketDataListener {
 
     @Override
     public void fairValueChanged(String productId, double fairValue) {
+        fairValueChanged(productId, fairValue);
         // This method will be called when a new fair value is received
         // You can then perform your check
         // And, if matching the requirement, notify the event via 'this.vwapTriggerListener.vwapTriggered(xxx);'
     }
+
+    @Override
+    public String toString() {
+        return "VwapTrigger{" +
+                "vwapTriggerListener=" + vwapTriggerListener +
+                '}';
+        // This method will be called when a new fair value is received
+        // You can then perform your check
+        // And, if matching the requirement, notify the event via 'this.vwapTriggerListener.vwapTriggered(xxx);'
+    }
+
 }
