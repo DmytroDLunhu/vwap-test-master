@@ -13,4 +13,5 @@ public interface MarketDataListener {
     Object transactionOccurred(String productId,
                                long quantity,
                                double price);
+
 }
